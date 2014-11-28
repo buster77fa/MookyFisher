@@ -25,13 +25,15 @@ public class Fish extends Task<ClientContext> {
     private int equipementCount;
     private Paint paint;
     private String fishingType;
+    private boolean inArea;
 
-    public Fish(ClientContext ctx, Paint paint, int fishingSpotID, int equipementCount, String fishingType) {
+    public Fish(ClientContext ctx, Paint paint, int fishingSpotID, int equipementCount, String fishingType, boolean inArea) {
         super(ctx);
         this.paint = paint;
         this.fishingSpotID = fishingSpotID;
         this.equipementCount = equipementCount;
         this.fishingType = fishingType;
+        this.inArea = inArea;
     }
 
     @Override
@@ -45,7 +47,13 @@ public class Fish extends Task<ClientContext> {
 
     @Override
     public void execute() {
-        Npc fishLocation = ctx.npcs.select().id(fishingSpotID).each(Interactive.doSetBounds(Variables.BOUNDS.FISH)).nearest().poll(); // Set fishing spot
+        Npc fishLocation;
+        if(inArea){
+            fishLocation = ctx.npcs.select().id(fishingSpotID).each(Interactive.doSetBounds(Variables.BOUNDS.FISH)).nearest().poll(); // Set fishing spot
+        }
+        else{
+            fishLocation = ctx.npcs.select().id(fishingSpotID).each(Interactive.doSetBounds(Variables.BOUNDS.FISH)).within(Variables.LOCATION.GUILDDOCK).nearest().poll(); // Set fishing spot
+        }
         Tile fishTile = fishLocation.tile();
         paint.setFish(fishLocation);
 

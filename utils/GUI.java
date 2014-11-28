@@ -22,7 +22,6 @@ import scripts.MookyFisher.node.Task;
 import scripts.MookyFisher.tasks.Bank;
 import scripts.MookyFisher.tasks.Drop;
 import scripts.MookyFisher.tasks.Fish;
-import scripts.MookyFisher.tasks.FishInArea;
 import scripts.MookyFisher.tasks.TraverseFromBank;
 import scripts.MookyFisher.tasks.TraverseToBank;
 import scripts.MookyFisher.vars.Variables;
@@ -68,9 +67,9 @@ public class GUI extends JFrame {
                 if (spot.getSelectedIndex() == 0) { // If Draynor selected
                     taskList.removeAll(taskList); // Remove current tasks
                     if (powerfish.isSelected()) {
-                        taskList.addAll(Arrays.asList(new Fish((ClientContext) ctx, paint, Variables.FISH.DRAYNOR, Variables.COUNT.NET, Variables.FISHINGSTYLE.NET), new Drop((ClientContext) ctx, paint, Variables.ITEM.SHRIMPANCHOVIES))); // Add Draynor tasks to list
+                        taskList.addAll(Arrays.asList(new Fish((ClientContext) ctx, paint, Variables.FISH.DRAYNOR, Variables.COUNT.NET, Variables.FISHINGSTYLE.NET, false), new Drop((ClientContext) ctx, paint, Variables.ITEM.SHRIMPANCHOVIES))); // Add Draynor tasks to list
                     } else {
-                        taskList.addAll(Arrays.asList(new Fish((ClientContext) ctx, paint, Variables.FISH.DRAYNOR, Variables.COUNT.NET, Variables.FISHINGSTYLE.NET), new Bank((ClientContext) ctx, paint, Variables.COUNT.NET), new TraverseToBank((ClientContext) ctx, paint, Variables.TILEPATHS.DRAYNOR), new TraverseFromBank((ClientContext) ctx, paint, Variables.TILEPATHS.DRAYNOR, Variables.COUNT.NET))); // Add Draynor tasks to list
+                        taskList.addAll(Arrays.asList(new Fish((ClientContext) ctx, paint, Variables.FISH.DRAYNOR, Variables.COUNT.NET, Variables.FISHINGSTYLE.NET, false), new Bank((ClientContext) ctx, paint, Variables.COUNT.NET), new TraverseToBank((ClientContext) ctx, paint, Variables.TILEPATHS.DRAYNOR), new TraverseFromBank((ClientContext) ctx, paint, Variables.TILEPATHS.DRAYNOR, Variables.COUNT.NET))); // Add Draynor tasks to list
                     }
 
                 } else if (spot.getSelectedIndex() == 1) { // If Barbvillage selected
@@ -81,9 +80,9 @@ public class GUI extends JFrame {
                     } else { // If the play DOES have 40 fishing
                         taskList.removeAll(taskList); // Remove current tasks
                         if (powerfish.isSelected()) {
-                            taskList.addAll(Arrays.asList(new Fish((ClientContext) ctx, paint, Variables.FISH.BARBVILLAGE, Variables.COUNT.LURE, Variables.FISHINGSTYLE.LURE), new Drop((ClientContext) ctx, paint, Variables.ITEM.TROUTSALMON))); // Add BarbVillage tasks to list
+                            taskList.addAll(Arrays.asList(new Fish((ClientContext) ctx, paint, Variables.FISH.BARBVILLAGE, Variables.COUNT.LURE, Variables.FISHINGSTYLE.LURE, false), new Drop((ClientContext) ctx, paint, Variables.ITEM.TROUTSALMON))); // Add BarbVillage tasks to list
                         } else {
-                            taskList.addAll(Arrays.asList(new Fish((ClientContext) ctx, paint, Variables.FISH.BARBVILLAGE, Variables.COUNT.LURE, Variables.FISHINGSTYLE.LURE), new Bank((ClientContext) ctx, paint, Variables.COUNT.LURE), new TraverseToBank((ClientContext) ctx, paint, Variables.TILEPATHS.EDGEVILLE), new TraverseFromBank((ClientContext) ctx, paint, Variables.TILEPATHS.EDGEVILLE, Variables.COUNT.LURE))); // Add BarbVillage tasks to list
+                            taskList.addAll(Arrays.asList(new Fish((ClientContext) ctx, paint, Variables.FISH.BARBVILLAGE, Variables.COUNT.LURE, Variables.FISHINGSTYLE.LURE, false), new Bank((ClientContext) ctx, paint, Variables.COUNT.LURE), new TraverseToBank((ClientContext) ctx, paint, Variables.TILEPATHS.EDGEVILLE), new TraverseFromBank((ClientContext) ctx, paint, Variables.TILEPATHS.EDGEVILLE, Variables.COUNT.LURE))); // Add BarbVillage tasks to list
                         }
                     }
 
@@ -95,9 +94,9 @@ public class GUI extends JFrame {
                     } else { // If the play DOES have 40 fishing
                         taskList.removeAll(taskList); // Remove current tasks
                         if (powerfish.isSelected()) {
-                            taskList.addAll(Arrays.asList(new Fish((ClientContext) ctx, paint, Variables.FISH.SEERS, Variables.COUNT.LURE, Variables.FISHINGSTYLE.LURE), new Drop((ClientContext) ctx, paint, Variables.ITEM.TROUTSALMON))); // Add BarbVillage tasks to list
+                            taskList.addAll(Arrays.asList(new Fish((ClientContext) ctx, paint, Variables.FISH.SEERS, Variables.COUNT.LURE, Variables.FISHINGSTYLE.LURE, false), new Drop((ClientContext) ctx, paint, Variables.ITEM.TROUTSALMON))); // Add BarbVillage tasks to list
                         } else {
-                            taskList.addAll(Arrays.asList(new Fish((ClientContext) ctx, paint, Variables.FISH.SEERS, Variables.COUNT.LURE, Variables.FISHINGSTYLE.LURE), new Bank((ClientContext) ctx, paint, Variables.COUNT.LURE), new TraverseToBank((ClientContext) ctx, paint, Variables.TILEPATHS.SEERS), new TraverseFromBank((ClientContext) ctx, paint, Variables.TILEPATHS.SEERS, Variables.COUNT.LURE))); // Add BarbVillage tasks to list
+                            taskList.addAll(Arrays.asList(new Fish((ClientContext) ctx, paint, Variables.FISH.SEERS, Variables.COUNT.LURE, Variables.FISHINGSTYLE.LURE, false), new Bank((ClientContext) ctx, paint, Variables.COUNT.LURE), new TraverseToBank((ClientContext) ctx, paint, Variables.TILEPATHS.SEERS), new TraverseFromBank((ClientContext) ctx, paint, Variables.TILEPATHS.SEERS, Variables.COUNT.LURE))); // Add BarbVillage tasks to list
                         }
                     }
                 } else if (spot.getSelectedIndex() == 3) { // If Catherby selected
@@ -108,9 +107,9 @@ public class GUI extends JFrame {
                     } else { // If the play DOES have 40 fishing
                         taskList.removeAll(taskList); // Remove current tasks
                         if (powerfish.isSelected()) {
-                            taskList.addAll(Arrays.asList(new Fish((ClientContext) ctx, paint, Variables.FISH.CATHERBY, Variables.COUNT.CAGE, Variables.FISHINGSTYLE.CAGE), new Drop((ClientContext) ctx, paint, Variables.ITEM.LOBSTERS), new BetweenFishLocations((ClientContext) ctx))); // Add Catherby tasks to list
+                            taskList.addAll(Arrays.asList(new Fish((ClientContext) ctx, paint, Variables.FISH.CATHERBY, Variables.COUNT.CAGE, Variables.FISHINGSTYLE.CAGE, false), new Drop((ClientContext) ctx, paint, Variables.ITEM.LOBSTERS), new BetweenFishLocations((ClientContext) ctx))); // Add Catherby tasks to list
                         } else {
-                            taskList.addAll(Arrays.asList(new Fish((ClientContext) ctx, paint, Variables.FISH.CATHERBY, Variables.COUNT.CAGE, Variables.FISHINGSTYLE.CAGE), new Bank((ClientContext) ctx, paint, Variables.COUNT.CAGE), new TraverseToBank((ClientContext) ctx, paint, Variables.TILEPATHS.CATHERBY), new TraverseFromBank((ClientContext) ctx, paint, Variables.TILEPATHS.CATHERBY, Variables.COUNT.CAGE), new BetweenFishLocations((ClientContext) ctx))); // Add Catherby tasks to list
+                            taskList.addAll(Arrays.asList(new Fish((ClientContext) ctx, paint, Variables.FISH.CATHERBY, Variables.COUNT.CAGE, Variables.FISHINGSTYLE.CAGE, false), new Bank((ClientContext) ctx, paint, Variables.COUNT.CAGE), new TraverseToBank((ClientContext) ctx, paint, Variables.TILEPATHS.CATHERBY), new TraverseFromBank((ClientContext) ctx, paint, Variables.TILEPATHS.CATHERBY, Variables.COUNT.CAGE), new BetweenFishLocations((ClientContext) ctx))); // Add Catherby tasks to list
                         }
 
                     }
@@ -126,7 +125,7 @@ public class GUI extends JFrame {
                             powerfish.setSelected(false);
                             return;
                         } else {
-                            taskList.addAll(Arrays.asList(new FishInArea((ClientContext) ctx, paint, Variables.FISH.FISHINGGUILD, Variables.COUNT.CAGE, Variables.FISHINGSTYLE.CAGE), new Bank((ClientContext) ctx, paint, Variables.COUNT.CAGE), new TraverseToBank((ClientContext) ctx, paint, Variables.TILEPATHS.FISHINGGUILD), new TraverseFromBank((ClientContext) ctx, paint, Variables.TILEPATHS.FISHINGGUILD, Variables.COUNT.CAGE))); // Add Catherby tasks to list
+                            taskList.addAll(Arrays.asList(new Fish((ClientContext) ctx, paint, Variables.FISH.FISHINGGUILD, Variables.COUNT.CAGE, Variables.FISHINGSTYLE.CAGE, true), new Bank((ClientContext) ctx, paint, Variables.COUNT.CAGE), new TraverseToBank((ClientContext) ctx, paint, Variables.TILEPATHS.FISHINGGUILD), new TraverseFromBank((ClientContext) ctx, paint, Variables.TILEPATHS.FISHINGGUILD, Variables.COUNT.CAGE))); // Add Catherby tasks to list
                         }
 
                     }
