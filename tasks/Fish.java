@@ -49,10 +49,10 @@ public class Fish extends Task<ClientContext> {
     public void execute() {
         Npc fishLocation;
         if(inArea){
-            fishLocation = ctx.npcs.select().id(fishingSpotID).each(Interactive.doSetBounds(Variables.BOUNDS.FISH)).nearest().poll(); // Set fishing spot
+            fishLocation = ctx.npcs.select().id(fishingSpotID).each(Interactive.doSetBounds(Variables.BOUNDS.FISH)).within(Variables.LOCATION.GUILDDOCK).nearest().poll(); // Set fishing spot
         }
         else{
-            fishLocation = ctx.npcs.select().id(fishingSpotID).each(Interactive.doSetBounds(Variables.BOUNDS.FISH)).within(Variables.LOCATION.GUILDDOCK).nearest().poll(); // Set fishing spot
+            fishLocation = ctx.npcs.select().id(fishingSpotID).each(Interactive.doSetBounds(Variables.BOUNDS.FISH)).nearest().poll(); // Set fishing spot
         }
         Tile fishTile = fishLocation.tile();
         paint.setFish(fishLocation);

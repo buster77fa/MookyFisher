@@ -10,7 +10,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Polygon;
 import java.awt.RenderingHints;
 import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
@@ -44,6 +43,15 @@ public class Paint extends ClientAccessor implements PaintListener {
 
     @Override
     public void repaint(Graphics g1) {
+
+        String currentLevel = "Current Level: " + ctx.skills.level(10);
+        String runTime = "Run Time: " + formatTime((System.currentTimeMillis()) - startTime);
+        String timeToLevel = "Time to Level: " + formatTime(timeToLevel(Variables.EXP.XP[ctx.skills.level(Skills.FISHING)]));
+        String expGained = "Exp Gained: " + calcExp() + "(" + perHour(calcExp()) + "/h)";
+        String expToLevel = "Exp to Level: " + calcExpToLevel();
+        String fishCaught = "Fish Caught: " + (fishCount) + "(" + perHour(fishCount) + "/h)";
+        String statusStr = "Status: " + status;
+
         Graphics2D g = (Graphics2D) g1;
         g.setRenderingHints(antialiasing);
         g.setColor(Color.BLACK);
@@ -53,13 +61,13 @@ public class Paint extends ClientAccessor implements PaintListener {
         g.setColor(Color.WHITE);
         g.setFont(font);
         g.drawString("MookyFisher V1.0", startPaintY + textOffset, startPaintX);
-        g.drawString("Current Level: " + ctx.skills.level(10), startPaintY + textOffset, startPaintX + 15);
-        g.drawString("Run Time: " + formatTime((System.currentTimeMillis()) - startTime), startPaintY + textOffset, startPaintX + 30);
-        g.drawString("Time to Level: " + formatTime(timeToLevel(Variables.EXP.XP[ctx.skills.level(Skills.FISHING)])), startPaintY + textOffset, startPaintX + 45);
-        g.drawString("Exp Gained: " + calcExp() + "(" + perHour(calcExp()) + "/h)", startPaintY + textOffset, startPaintX + 60);
-        g.drawString("Exp to Level: " + calcExpToLevel(), startPaintY + textOffset, startPaintX + 75);
-        g.drawString("Fish Caught: " + (fishCount) + "(" + perHour(fishCount) + "/h)", startPaintY + textOffset, startPaintX + 90);
-        g.drawString("Status: " + status, startPaintY + textOffset, startPaintX + 105);
+        g.drawString(currentLevel, startPaintY + textOffset, startPaintX + 15);
+        g.drawString(runTime, startPaintY + textOffset, startPaintX + 30);
+        g.drawString(timeToLevel, startPaintY + textOffset, startPaintX + 45);
+        g.drawString(expGained, startPaintY + textOffset, startPaintX + 60);
+        g.drawString(expToLevel, startPaintY + textOffset, startPaintX + 75);
+        g.drawString(fishCaught, startPaintY + textOffset, startPaintX + 90);
+        g.drawString(statusStr, startPaintY + textOffset, startPaintX + 105);
 
         if (getFish() != null) {
             renderFishingSpot(g1, Color.BLUE, getFish());
@@ -73,10 +81,10 @@ public class Paint extends ClientAccessor implements PaintListener {
             final Npc current = iterator.next();
             if (getFish() != null) {
                 if (!current.tile().toString().equals(targetFish.tile().toString())) {
-                    renderFishingSpotLabel(g1, Color.ORANGE, current);
+                    renderFishingSpot(g1, Color.ORANGE, getFish());
                 }
             } else {
-                renderFishingSpotLabel(g1, Color.ORANGE, current);
+                renderFishingSpot(g1, Color.ORANGE, getFish());
             }
 
         }
@@ -86,20 +94,6 @@ public class Paint extends ClientAccessor implements PaintListener {
         Point p = targetFish.tile().matrix(ctx).point(0);
         int fx = (int) p.getX();
         int fy = (int) p.getY();
-        g.setColor(color);
-        g.drawLine(fx - 10, fy + 5, fx - 10, fy - 5);
-        g.drawLine(fx - 10, fy - 5, fx + 8, fy + 5);
-        g.drawLine(fx + 8, fy + 5, fx + 15, fy);
-        g.drawLine(fx + 15, fy, fx + 8, fy - 5);
-        g.drawLine(fx + 8, fy - 5, fx - 10, fy + 5);
-    }
-
-    public void renderFishingSpotLabel(Graphics g, Color color, Npc targetFish) {
-        Point p = targetFish.tile().matrix(ctx).point(0);
-        int fx = (int) p.getX();
-        int fy = (int) p.getY();
-        g.setColor(color);
-
         g.setColor(color);
         g.drawLine(fx - 10, fy + 5, fx - 10, fy - 5);
         g.drawLine(fx - 10, fy - 5, fx + 8, fy + 5);
@@ -168,6 +162,5 @@ public class Paint extends ClientAccessor implements PaintListener {
     public void addFishCount() {
         this.fishCount++;
     }
-    
 
 }
