@@ -76,17 +76,15 @@ public class Paint extends ClientAccessor implements PaintListener {
             renderCursor(g1);
         }
 
-        final Iterator<Npc> iterator = ctx.npcs.select().id(Variables.FISH.FISHINGGUILD).within(Variables.LOCATION.GUILDDOCK).iterator();
-        while (iterator.hasNext()) {
-            final Npc current = iterator.next();
+        final Iterator<Npc> iterator1 = ctx.npcs.select().id(Variables.FISH.FISHINGGUILD).within(10).iterator();
+
+        while (iterator1.hasNext()) {
+            final Npc current = iterator1.next();
             if (getFish() != null) {
                 if (!current.tile().toString().equals(targetFish.tile().toString())) {
-                    renderFishingSpot(g1, Color.ORANGE, getFish());
+                    renderFishingSpot(g1, Color.ORANGE, current);
                 }
-            } else {
-                renderFishingSpot(g1, Color.ORANGE, getFish());
             }
-
         }
     }
 

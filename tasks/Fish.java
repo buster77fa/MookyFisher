@@ -64,7 +64,7 @@ public class Fish extends Task<ClientContext> {
             Condition.wait(() -> fishTile.distanceTo(ctx.players.local()) < 3, Random.nextInt(1000, 2000));
         }
         paint.setStatus("Fishing");
-        fishLocation.interact(fishingType, "Fishing spot"); // Start fishing
+        fishLocation.interact(false, fishingType, "Fishing spot"); // Start fishing
         Condition.wait(new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
