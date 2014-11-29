@@ -82,7 +82,9 @@ public class Paint extends ClientAccessor implements PaintListener {
             final Npc current = iterator1.next();
             if (getFish() != null) {
                 if (!current.tile().toString().equals(targetFish.tile().toString())) {
-                    renderFishingSpot(g1, Color.ORANGE, current);
+                    if (current.inViewport()) {
+                        renderFishingSpot(g1, Color.ORANGE, current);
+                    }
                 }
             }
         }
